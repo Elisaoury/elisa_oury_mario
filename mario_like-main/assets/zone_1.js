@@ -55,14 +55,14 @@ export class zone_1 extends Phaser.Scene {
             "plateform",
             this.tileset
         );
-
-        this.calque_herbe = this.carteDuNiveau.createLayer(
-            "herbe",
+        this.calque_decors = this.carteDuNiveau.createLayer(
+            "decors",
             this.tileset
         );
+       
 
         //personnage
-        this.player = this.physics.add.sprite(32, 2800, 'perso_droite').setScale(0.4);
+        this.player = this.physics.add.sprite(32,2800, 'perso_droite').setScale(0.4);
         this.player.setBounce(0.2);
         this.player.setCollideWorldBounds(true);
         this.physics.add.collider(this.player, this.platforms);
@@ -78,7 +78,12 @@ export class zone_1 extends Phaser.Scene {
         this.herbe = this.physics.add.group();
 
         this.herbe1 = this.herbe.create(70, 800, "herbe");
-        
+        this.herbe2 = this.herbe.create(4000,80, "herbe");
+        this.herbe3 = this.herbe.create(5250,2800, "herbe");
+        this.herbe4 = this.herbe.create(7000,1200, "herbe");
+        this.herbe5 = this.herbe.create(8600,80, "herbe");
+        this.herbe5 = this.herbe.create(10500,2800, "herbe");
+        this.herbe5 = this.herbe.create(11950,800, "herbe");
         this.physics.add.overlap(this.player, this.herbe, this.collectHerbe, null, this);
 
 
@@ -115,9 +120,9 @@ export class zone_1 extends Phaser.Scene {
 
         this.physics.add.collider(this.player, this.box);
         // redimentionnement du monde avec les dimensions calculées via tiled
-        this.physics.world.setBounds(0, 0, 12000,3000);
+        this.physics.world.setBounds(0, 0, 12000,3050);
         //  ajout du champs de la caméra de taille identique à celle du monde
-        this.cameras.main.setBounds(0, 0, 12000, 3000);
+        this.cameras.main.setBounds(0, 0, 12000, 3050);
         // ancrage de la caméra sur le joueur
         this.cameras.main.zoom = 0.85;
         this.cameras.main.startFollow(this.player);
@@ -130,7 +135,7 @@ export class zone_1 extends Phaser.Scene {
         // animation personnage
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('perso_gauche', { start: 0, end: 7 }),
+            frames: this.anims.generateFrameNumbers('perso_droite', { start: 1, end: 9 }),
             frameRate: 10,
             repeat: -1
         });
@@ -180,15 +185,15 @@ export class zone_1 extends Phaser.Scene {
         
 
         if (this.keyJump.isDown && this.player.body.blocked.down) {
-            this.player.setVelocityY(-400);
+            this.player.setVelocityY(-550);
             //    player.anims.play('jump', true);
         } else if (this.keyQ.isDown) {
             // Action pour la touche Q (gauche)
-            this.player.setVelocityX(-200);
+            this.player.setVelocityX(-400);
             this.player.anims.play('left', true);
         } else if (this.keyD.isDown) {
             // Action pour la touche D (droite)
-            this.player.setVelocityX(200);
+            this.player.setVelocityX(400);
             this.player.anims.play('right', true);
         } else { 
             // Aucune touche enfoncée (immobile)

@@ -5,8 +5,8 @@ var config =
 {
     type: Phaser.AUTO,
         scale:{
-            width: 1200, 
-            height: 900,
+            width: 2400, 
+            height: 1000,
 
     },
     
@@ -15,7 +15,7 @@ var config =
         default: 'arcade',
         arcade: 
         {
-            gravity: { y:300},
+            gravity: { y:700},
             debug: true
         }
     },
